@@ -1,0 +1,25 @@
+<html>
+<head>
+<script>
+
+async function getCurrency() {
+  const usd_url = 'https://api.nbp.pl/api/exchangerates/rates/a/usd/?format=json';
+  let response = await fetch(usd_url);
+  let json = await response.json();
+  return json.rates[0].mid;
+}
+async function run() {
+  let xxx = await getCurrency();
+  console.log(`waluta to ${xxx}`);
+  document.getElementById("kurs_dolara").innerHTML = "kurs dolara to " + xxx ;
+}
+
+</script>
+</head>
+<body>
+
+<button type="button" onClick="run()">Pobierz kurs dolara </button>
+<div id="kurs_dolara"></div>
+
+</body>
+</html>
